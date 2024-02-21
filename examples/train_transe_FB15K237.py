@@ -44,3 +44,14 @@ transe.save_checkpoint('./checkpoint/transe.ckpt')
 transe.load_checkpoint('./checkpoint/transe.ckpt')
 tester = Tester(model = transe, data_loader = test_dataloader, use_gpu = True)
 tester.run_link_prediction(type_constrain = False)
+
+# Add RetrievalMAP metric
+retrieval_map = RetrievalMAP()
+with torch.no_grad():
+    complEx.eval()
+    for data in test_dataloader:
+        scores = complEx.predict(data)
+        retrieval_map.update(scores, data)
+    map_value = retrieval_map.compute()
+
+print("Retrieval MAP:", map_value)

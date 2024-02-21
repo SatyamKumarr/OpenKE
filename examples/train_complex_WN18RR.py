@@ -39,10 +39,10 @@ model = NegativeSampling(
 # train the model
 trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 2000, alpha = 0.5, use_gpu = True, opt_method = "adagrad")
 trainer.run()
-complEx.save_checkpoint('./checkpoint/complEx.ckpt')
+complEx.save_checkpoint('./checkpoint/WN18RR.ckpt')
 
 # test the model
-complEx.load_checkpoint('./checkpoint/complEx.ckpt')
+complEx.load_checkpoint('./checkpoint/WN18RR.ckpt')
 tester = Tester(model = complEx, data_loader = test_dataloader, use_gpu = True)
 tester.run_link_prediction(type_constrain = False)
 
