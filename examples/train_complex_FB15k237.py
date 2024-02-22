@@ -1,4 +1,6 @@
 import openke
+import torch
+
 from openke.config import Trainer, Tester
 from openke.module.model import ComplEx
 from openke.module.loss import SoftplusLoss

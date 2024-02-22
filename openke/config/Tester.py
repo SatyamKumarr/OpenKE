@@ -13,6 +13,7 @@ import numpy as np
 from sklearn.metrics import roc_auc_score
 import copy
 from tqdm import tqdm
+from torchmetrics import RetrievalMAP
 
 class Tester(object):
 
@@ -24,16 +25,18 @@ class Tester(object):
         self.lib.test_link_prediction.argtypes = [ctypes.c_int64]
 
         self.lib.getTestLinkMRR.argtypes = [ctypes.c_int64]
-        self.lib.getTestLinkMR.argtypes = [ctypes.c_int64]
+        #self.lib.getTestLinkMR.argtypes = [ctypes.c_int64]
         self.lib.getTestLinkHit10.argtypes = [ctypes.c_int64]
-        self.lib.getTestLinkHit3.argtypes = [ctypes.c_int64]
+        #self.lib.getTestLinkHit3.argtypes = [ctypes.c_int64]
         self.lib.getTestLinkHit1.argtypes = [ctypes.c_int64]
+        self.lib.getTestLinkMAP.argtypes = [ctypes.c_int64]
 
         self.lib.getTestLinkMRR.restype = ctypes.c_float
-        self.lib.getTestLinkMR.restype = ctypes.c_float
+        #self.lib.getTestLinkMR.restype = ctypes.c_float
         self.lib.getTestLinkHit10.restype = ctypes.c_float
-        self.lib.getTestLinkHit3.restype = ctypes.c_float
+        #self.lib.getTestLinkHit3.restype = ctypes.c_float
         self.lib.getTestLinkHit1.restype = ctypes.c_float
+        self.lib.getTestLinkMAP.restypes = [ctypes.c_float]
 
         self.model = model
         self.data_loader = data_loader
@@ -83,12 +86,13 @@ class Tester(object):
         self.lib.test_link_prediction(type_constrain)
 
         mrr = self.lib.getTestLinkMRR(type_constrain)
-        mr = self.lib.getTestLinkMR(type_constrain)
+        #mr = self.lib.getTestLinkMR(type_constrain)
         hit10 = self.lib.getTestLinkHit10(type_constrain)
-        hit3 = self.lib.getTestLinkHit3(type_constrain)
+       # hit3 = self.lib.getTestLinkHit3(type_constrain)
         hit1 = self.lib.getTestLinkHit1(type_constrain)
+        map_value = self.lib.getTestLinkMAP(type_constrain)
         print (hit10)
-        return mrr, mr, hit10, hit3, hit1
+        return mrr, hit10, hit1, map_value
 
     def get_best_threshlod(self, score, ans):
         res = np.concatenate([ans.reshape(-1,1), score.reshape(-1,1)], axis = -1)

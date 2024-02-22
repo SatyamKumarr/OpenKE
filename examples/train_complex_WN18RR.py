@@ -1,4 +1,5 @@
 import openke
+import torch
 from openke.config import Trainer, Tester
 from openke.module.model import ComplEx
 from openke.module.loss import SoftplusLoss
@@ -37,7 +38,7 @@ model = NegativeSampling(
 )
 
 # train the model
-trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 2000, alpha = 0.5, use_gpu = True, opt_method = "adagrad")
+trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 5, alpha = 0.5, use_gpu = True, opt_method = "adagrad")
 trainer.run()
 complEx.save_checkpoint('./checkpoint/WN18RR.ckpt')
 
@@ -52,7 +53,9 @@ with torch.no_grad():
     complEx.eval()
     for data in test_dataloader:
         scores = complEx.predict(data)
+        print("Scores for WN18RR ",scores)
         retrieval_map.update(scores, data)
+        print("Retrieval Map for WN18RR ",retrieval_map)
     map_value = retrieval_map.compute()
 
 print("Retrieval MAP:", map_value)
