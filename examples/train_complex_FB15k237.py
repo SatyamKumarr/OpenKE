@@ -52,7 +52,7 @@ complEx.save_checkpoint('./checkpoint/fb_complEx.ckpt')
 complEx.load_checkpoint('./checkpoint/fb_complEx.ckpt')
 tester = Tester(model = complEx, data_loader = test_dataloader, use_gpu = True)
 #tester.run_link_prediction(type_constrain = False)
-tester.run_triple_classification(threshold=0.5)
+tester.run_triple_classification(threshlod=0.5)
 
 # Add RetrievalMAP metric
 retrieval_map = RetrievalMAP()
