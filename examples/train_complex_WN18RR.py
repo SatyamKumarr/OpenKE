@@ -5,7 +5,7 @@ from openke.module.model import ComplEx
 from openke.module.loss import SoftplusLoss
 from openke.module.strategy import NegativeSampling
 from openke.data import TrainDataLoader, TestDataLoader
-from torchmetrics import RetrievalMAP
+from torchmetrics.retrieval import RetrievalMAP
 import os
 # os.makedirs('/checkpoint')
 
@@ -47,17 +47,18 @@ complEx.save_checkpoint('./checkpoint/WN18RR.ckpt')
 # test the model
 complEx.load_checkpoint('./checkpoint/WN18RR.ckpt')
 tester = Tester(model = complEx, data_loader = test_dataloader, use_gpu = True)
-tester.run_link_prediction(type_constrain = False)
+#tester.run_link_prediction(type_constrain = False)
+tester.run_triple_classification(threshold=0.5)
 
 # Add RetrievalMAP metric
 retrieval_map = RetrievalMAP()
+print("Retrieval Map for WN188RR ", retrieval_map)
 with torch.no_grad():
     complEx.eval()
     for data in test_dataloader:
         scores = complEx.predict(data)
         print("Scores for WN18RR ",scores)
         retrieval_map.update(scores, data)
-        print("Retrieval Map for WN18RR ",retrieval_map)
+        #print("Retrieval Map for WN18RR ",retrieval_map)
     map_value = retrieval_map.compute()
 
-print("Retrieval MAP:", map_value)

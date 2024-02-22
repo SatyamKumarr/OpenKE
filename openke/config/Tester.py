@@ -91,7 +91,9 @@ class Tester(object):
        # hit3 = self.lib.getTestLinkHit3(type_constrain)
         hit1 = self.lib.getTestLinkHit1(type_constrain)
         #map_value = self.lib.getTestLinkMAP(type_constrain)
-        print (hit10)
+        print ("MRR:"mrr)
+        print("Hit@10",hit10)
+        print("Hit@1",hit1)
         return mrr, hit10, hit1
 
     def get_best_threshlod(self, score, ans):
@@ -148,6 +150,7 @@ class Tester(object):
         for index, [ans, score] in enumerate(res):
             if score > threshlod:
                 acc = (2 * total_current + total_false - index) / total_all
+                print("Accuracy",acc)
                 break
             elif ans == 1:
                 total_current += 1.0
