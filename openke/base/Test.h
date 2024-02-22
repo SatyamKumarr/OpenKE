@@ -292,7 +292,7 @@ void test_link_prediction(bool type_constrain = false) {
     printf("no type constraint results:\n");
     
     printf("metric:\t\t\t MRR \t\t MAP@10 \t\t hit@10 \t\t hit@1 \t\t MAP@1\n");
-    printf("Head:\t\t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \n", l_reci_rank, l_map, l_tot, l1_tot,l_map1);
+    printf("Head:\t\t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \n", l_reci_rank, l_reci_rank, l_tot, l1_tot,l_map1);
     printf("Tail:\t\t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \n", r_reci_rank, r_map, r_tot, r1_tot,r_map1);
     // printf("averaged:\t\t %.4f \t %.4f \t %.4f \t %.4f \n",
             // (l_reci_rank+r_reci_rank)/2, (l_map+r_map)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
