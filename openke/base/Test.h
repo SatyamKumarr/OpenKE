@@ -10,12 +10,12 @@ link prediction
 INT lastHead = 0;
 INT lastTail = 0;
 INT lastRel = 0;
-REAL l1_filter_tot = 0, l1_tot = 0, r1_tot = 0, r1_filter_tot = 0, l_tot = 0, r_tot = 0, l_filter_rank = 0, l_rank = 0, l_filter_reci_rank = 0, l_reci_rank = 0,l_map=0;
-REAL l3_filter_tot = 0, l3_tot = 0, r3_tot = 0, r3_filter_tot = 0, l_filter_tot = 0, r_filter_tot = 0, r_filter_rank = 0, r_rank = 0, r_filter_reci_rank = 0, r_reci_rank = 0,r_map=0;
-REAL rel3_tot = 0, rel3_filter_tot = 0, rel_filter_tot = 0, rel_filter_rank = 0, rel_rank = 0, rel_filter_reci_rank = 0, rel_reci_rank = 0, rel_tot = 0, rel1_tot = 0, rel1_filter_tot = 0;
+REAL l1_filter_tot = 0, l1_tot = 0, r1_tot = 0, r1_filter_tot = 0, l_tot = 0, r_tot = 0, l_filter_rank = 0, l_rank = 0, l_filter_reci_rank = 0, l_reci_rank = 0,l_map=0,lmap_filtered_tot=0;
+REAL l3_filter_tot = 0, l3_tot = 0, r3_tot = 0, r3_filter_tot = 0, l_filter_tot = 0, r_filter_tot = 0, r_filter_rank = 0, r_rank = 0, r_filter_reci_rank = 0, r_reci_rank = 0,r_map=0,rmap_filtered_tot=0;
+REAL rel3_tot = 0, rel3_filter_tot = 0, rel_filter_tot = 0, rel_filter_rank = 0, rel_rank = 0, rel_filter_reci_rank = 0, rel_reci_rank = 0, rel_tot = 0, rel1_tot = 0, rel1_filter_tot = 0,relmap_filter=0,relmap_filter_tot=0;
 
-REAL l1_filter_tot_constrain = 0, l1_tot_constrain = 0, r1_tot_constrain = 0, r1_filter_tot_constrain = 0, l_tot_constrain = 0, r_tot_constrain = 0, l_filter_rank_constrain = 0, l_rank_constrain = 0, l_filter_reci_rank_constrain = 0, l_reci_rank_constrain = 0;
-REAL l3_filter_tot_constrain = 0, l3_tot_constrain = 0, r3_tot_constrain = 0, r3_filter_tot_constrain = 0, l_filter_tot_constrain = 0, r_filter_tot_constrain = 0, r_filter_rank_constrain = 0, r_rank_constrain = 0, r_filter_reci_rank_constrain = 0, r_reci_rank_constrain = 0;
+REAL l1_filter_tot_constrain = 0, l1_tot_constrain = 0, r1_tot_constrain = 0, r1_filter_tot_constrain = 0, l_tot_constrain = 0, r_tot_constrain = 0, l_filter_rank_constrain = 0, l_rank_constrain = 0, l_filter_reci_rank_constrain = 0, l_reci_rank_constrain = 0,lmap_filter_tot_constrain = 0, lmap_tot_constrain = 0;
+REAL l3_filter_tot_constrain = 0, l3_tot_constrain = 0, r3_tot_constrain = 0, r3_filter_tot_constrain = 0, l_filter_tot_constrain = 0, r_filter_tot_constrain = 0, r_filter_rank_constrain = 0, r_rank_constrain = 0, r_filter_reci_rank_constrain = 0, r_reci_rank_constrain = 0,rmap_filter_tot_constrain = 0, rmap_tot_constrain = 0;
 REAL hit1, hit3, hit10, mr, mrr,map;
 REAL hit1TC, hit3TC, hit10TC, mrTC, mrrTC,mapTC;
 
@@ -24,12 +24,12 @@ void initTest() {
     lastHead = 0;
     lastTail = 0;
     lastRel = 0;
-    l1_filter_tot = 0, l1_tot = 0, r1_tot = 0, r1_filter_tot = 0, l_tot = 0, r_tot = 0, l_filter_rank = 0, l_rank = 0, l_filter_reci_rank = 0, l_reci_rank = 0,l_map=0;
-    l3_filter_tot = 0, l3_tot = 0, r3_tot = 0, r3_filter_tot = 0, l_filter_tot = 0, r_filter_tot = 0, r_filter_rank = 0, r_rank = 0, r_filter_reci_rank = 0, r_reci_rank = 0,r_map=0;
-    REAL rel3_tot = 0, rel3_filter_tot = 0, rel_filter_tot = 0, rel_filter_rank = 0, rel_rank = 0, rel_filter_reci_rank = 0, rel_reci_rank = 0, rel_tot = 0, rel1_tot = 0, rel1_filter_tot = 0;
+    l1_filter_tot = 0, l1_tot = 0, r1_tot = 0, r1_filter_tot = 0, l_tot = 0, r_tot = 0, l_filter_rank = 0, l_rank = 0, l_filter_reci_rank = 0, l_reci_rank = 0,l_map=0,lmap_filtered_tot=0;
+    l3_filter_tot = 0, l3_tot = 0, r3_tot = 0, r3_filter_tot = 0, l_filter_tot = 0, r_filter_tot = 0, r_filter_rank = 0, r_rank = 0, r_filter_reci_rank = 0, r_reci_rank = 0,r_map=0,rmap_filtered_tot=0;
+    REAL rel3_tot = 0, rel3_filter_tot = 0, rel_filter_tot = 0, rel_filter_rank = 0, rel_rank = 0, rel_filter_reci_rank = 0, rel_reci_rank = 0, rel_tot = 0, rel1_tot = 0, rel1_filter_tot = 0,relmap_filter=0,relmap_filter_tot=0;
 
-    l1_filter_tot_constrain = 0, l1_tot_constrain = 0, r1_tot_constrain = 0, r1_filter_tot_constrain = 0, l_tot_constrain = 0, r_tot_constrain = 0, l_filter_rank_constrain = 0, l_rank_constrain = 0, l_filter_reci_rank_constrain = 0, l_reci_rank_constrain = 0;
-    l3_filter_tot_constrain = 0, l3_tot_constrain = 0, r3_tot_constrain = 0, r3_filter_tot_constrain = 0, l_filter_tot_constrain = 0, r_filter_tot_constrain = 0, r_filter_rank_constrain = 0, r_rank_constrain = 0, r_filter_reci_rank_constrain = 0, r_reci_rank_constrain = 0;
+    l1_filter_tot_constrain = 0, l1_tot_constrain = 0, r1_tot_constrain = 0, r1_filter_tot_constrain = 0, l_tot_constrain = 0, r_tot_constrain = 0, l_filter_rank_constrain = 0, l_rank_constrain = 0, l_filter_reci_rank_constrain = 0, l_reci_rank_constrain = 0,lmap_filter_tot_constrain = 0, lmap_tot_constrain = 0;
+    l3_filter_tot_constrain = 0, l3_tot_constrain = 0, r3_tot_constrain = 0, r3_filter_tot_constrain = 0, l_filter_tot_constrain = 0, r_filter_tot_constrain = 0, r_filter_rank_constrain = 0, r_rank_constrain = 0, r_filter_reci_rank_constrain = 0, r_reci_rank_constrain = 0,rmap_filter_tot_constrain = 0, rmap_tot_constrain = 0;
 }
 
 extern "C"
@@ -72,18 +72,23 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
         rig = head_rig[r];
     }
     REAL minimal = con[h];
-    INT l_s = 0;
+    INT l_s = 0;INT l_prec=0;
     INT l_filter_s = 0;
+    INT l_filter_prec = 0;
     INT l_s_constrain = 0;
     INT l_filter_s_constrain = 0;
+    INT l_prec=0;
+    
 
     for (INT j = 0; j < entityTotal; j++) {
         if (j != h) {
             REAL value = con[j];
             if (value < minimal) {
                 l_s += 1;
+                l_prec+=1;
                 if (not _find(j, t, r))
                     l_filter_s += 1;
+                    l_filter_prec += 1;
             }
             if (type_constrain) {
                 while (lef < rig && head_type[lef] < j) lef ++;
@@ -100,7 +105,9 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
     }
 
     if (l_filter_s < 10) l_filter_tot += 1;
+    if (l_filter_prec < 10) lmap_filtered_tot += 1;
     if (l_s < 10) l_tot += 1;
+    if (l_prec < 10) l_map += 1;
     if (l_filter_s < 3) l3_filter_tot += 1;
     if (l_s < 3) l3_tot += 1;
     if (l_filter_s < 1) l1_filter_tot += 1;
@@ -110,6 +117,8 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
     l_rank += (1 + l_s);
     l_filter_reci_rank += 1.0/(l_filter_s+1);
     l_reci_rank += 1.0/(l_s+1);
+
+
 
     if (type_constrain) {
         if (l_filter_s_constrain < 10) l_filter_tot_constrain += 1;
@@ -137,8 +146,9 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
         rig = tail_rig[r];
     }
     REAL minimal = con[t];
-    INT r_s = 0;
+    INT r_s = 0;INT r_prec=0;
     INT r_filter_s = 0;
+    INT r_filter_prec = 0;
     INT r_s_constrain = 0;
     INT r_filter_s_constrain = 0;
     for (INT j = 0; j < entityTotal; j++) {
@@ -146,8 +156,10 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
             REAL value = con[j];
             if (value < minimal) {
                 r_s += 1;
+                r_prec+=1;
                 if (not _find(h, j, r))
                     r_filter_s += 1;
+                    r_filter_prec +=1;
             }
             if (type_constrain) {
                 while (lef < rig && tail_type[lef] < j) lef ++;
@@ -165,7 +177,9 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
     }
 
     if (r_filter_s < 10) r_filter_tot += 1;
+    if (r_filter_prec < 10) rmap_filtered_tot += 1;
     if (r_s < 10) r_tot += 1;
+    if (l_prec < 10) r_map += 1;
     if (r_filter_s < 3) r3_filter_tot += 1;
     if (r_s < 3) r3_tot += 1;
     if (r_filter_s < 1) r1_filter_tot += 1;
@@ -234,12 +248,15 @@ void test_link_prediction(bool type_constrain = false) {
     r_rank /= testTotal;
     l_reci_rank /= testTotal;
     r_reci_rank /= testTotal;
+
  
     l_tot /= testTotal;
+    l_map /= testTotal;
     l3_tot /= testTotal;
     l1_tot /= testTotal;
  
     r_tot /= testTotal;
+    r_map /= testTotal;
     r3_tot /= testTotal;
     r1_tot /= testTotal;
 
@@ -261,11 +278,11 @@ void test_link_prediction(bool type_constrain = false) {
 
     printf("no type constraint results:\n");
     
-    printf("metric:\t\t\t MRR \t hit@10 \t hit@1 \n");
-    printf("Head:\t\t\t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
-    printf("Tail:\t\t\t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
-    printf("averaged:\t\t %f \t %f \t %f \n",
-            (l_reci_rank+r_reci_rank)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
+    printf("metric:\t\t\t MRR \t MAP \t hit@10 \t hit@1 \n");
+    printf("Head:\t\t\t %f \t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
+    printf("Tail:\t\t\t %f \t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
+    printf("averaged:\t\t %f \t %f \t %f \t %f \n",
+            (l_reci_rank+r_reci_rank)/2, (l_map+r_map)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
     printf("\n");
     // printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank, l_filter_rank, l_filter_tot, l3_filter_tot, l1_filter_tot);
     // printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank, r_filter_rank, r_filter_tot, r3_filter_tot, r1_filter_tot);
@@ -380,7 +397,7 @@ extern "C"
 REAL getTestLinkHit10(bool type_constrain = false) {
     if (type_constrain)
         return hit10TC;
-    printf("Retrieval MAP (Head): %f\n", hit10);
+    // printf("Retrieval MAP (Head): %f\n", hit10);
     return hit10;
 }
 
@@ -395,7 +412,7 @@ extern "C"
 REAL  getTestLinkHit1(bool type_constrain = false) {
     if (type_constrain)
         return hit1TC;
-    printf("Retrieval MAP (Tail): %f\n", hit1);    
+    // printf("Retrieval MAP (Tail): %f\n", hit1);    
     return hit1;
 }
 

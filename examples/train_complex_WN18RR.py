@@ -63,17 +63,17 @@ print("Retrieval Map for WN18RR ", retrieval_map)
 #     map_value = retrieval_map.compute()
 
 # Get predictions
-predictions = tester.run_link_prediction(type_constrain=False)
+# predictions = tester.run_link_prediction(type_constrain=False)
 
-# Process predictions and targets
-pred_scores = torch.cat(predictions, dim=0)
-true_labels = torch.zeros_like(pred_scores)
+# # Process predictions and targets
+# pred_scores = torch.cat(predictions, dim=0)
+# true_labels = torch.zeros_like(pred_scores)
 
-# Calculate Retrieval.MAP
-retrieval_map(pred_scores, true_labels)
+# # Calculate Retrieval.MAP
+# retrieval_map(pred_scores, true_labels)
 
-# Get the metric value
-map_score = retrieval_map.compute()
+# # Get the metric value
+# map_score = retrieval_map.compute()
 
-print("Retrieval MAP Score:", map_score.item())
+# print("Retrieval MAP Score:", map_score.item())
 
