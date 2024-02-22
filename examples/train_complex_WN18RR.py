@@ -6,6 +6,8 @@ from openke.module.loss import SoftplusLoss
 from openke.module.strategy import NegativeSampling
 from openke.data import TrainDataLoader, TestDataLoader
 from torchmetrics import RetrievalMAP
+import os
+os.makedirs('./checkpoint')
 
 # dataloader for training
 train_dataloader = TrainDataLoader(
