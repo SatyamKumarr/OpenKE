@@ -91,7 +91,7 @@ class Tester(object):
        # hit3 = self.lib.getTestLinkHit3(type_constrain)
         hit1 = self.lib.getTestLinkHit1(type_constrain)
         #map_value = self.lib.getTestLinkMAP(type_constrain)
-        print ("MRR:"mrr)
+        print ("MRR:",mrr)
         print("Hit@10",hit10)
         print("Hit@1",hit1)
         return mrr, hit10, hit1
