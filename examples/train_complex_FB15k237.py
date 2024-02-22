@@ -51,17 +51,21 @@ complEx.save_checkpoint('./checkpoint/fb_complEx.ckpt')
 # test the model
 complEx.load_checkpoint('./checkpoint/fb_complEx.ckpt')
 tester = Tester(model = complEx, data_loader = test_dataloader, use_gpu = True)
-#tester.run_link_prediction(type_constrain = False)
+tester.run_link_prediction(type_constrain = False)
 tester.run_triple_classification(threshlod=0.5)
 
 # Add RetrievalMAP metric
 retrieval_map = RetrievalMAP()
 print("Retrieval Map for FB15k237 ", retrieval_map)
-with torch.no_grad():
-    complEx.eval()
-    for data in test_dataloader:
-        scores = complEx.predict(data)
-        print("Scores for FB15k237 ",scores)
-        retrieval_map.update(scores, data)
-        #print("Retrieval Map for WN18RR ",retrieval_map)
-    map_value = retrieval_map.compute()
+# with torch.no_grad():
+#     complEx.eval()
+#     for data in test_dataloader:
+#         scores = complEx.predict(data)
+#         print("Scores for FB15k237 ",scores)
+#         retrieval_map.update(scores, data)
+#         #print("Retrieval Map for WN18RR ",retrieval_map)
+#     map_value = retrieval_map.compute()
+tester_output = tester.run_link_prediction(type_constrain=False)
+retrieval_map.update(tester_output)
+map_score = retrieval_map.compute()
+print("Retrieval MAP Score:", map_score)
