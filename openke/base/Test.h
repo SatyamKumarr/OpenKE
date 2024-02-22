@@ -72,7 +72,7 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
         rig = head_rig[r];
     }
     REAL minimal = con[h];
-    INT l_s = 0;INT l_prec=0;
+    INT l_s = 0;
     INT l_filter_s = 0;
     INT l_filter_prec = 0;
     INT l_s_constrain = 0;
@@ -179,7 +179,7 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
     if (r_filter_s < 10) r_filter_tot += 1;
     if (r_filter_prec < 10) rmap_filtered_tot += 1;
     if (r_s < 10) r_tot += 1;
-    if (l_prec < 10) r_map += 1;
+    if (r_prec < 10) r_map += 1;
     if (r_filter_s < 3) r3_filter_tot += 1;
     if (r_s < 3) r3_tot += 1;
     if (r_filter_s < 1) r1_filter_tot += 1;
