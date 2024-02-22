@@ -259,7 +259,7 @@ void test_link_prediction(bool type_constrain = false) {
 
     printf("no type constraint results:\n");
     
-    printf("metric:\t\t\t MRR  \t hit@10 \t hit@3  \t hit@1 \n");
+    printf("metric:\t\t\t MRR  \t hit@10 \t hit@1 \n");
     printf("l(raw):\t\t\t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
     printf("r(raw):\t\t\t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
     printf("averaged(raw):\t\t %f \t %f \t %f \n",
@@ -317,11 +317,11 @@ void test_link_prediction(bool type_constrain = false) {
         // printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank_constrain, r_filter_rank_constrain, r_filter_tot_constrain, r3_filter_tot_constrain, r1_filter_tot_constrain);
         // printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
         //         (l_filter_reci_rank_constrain+r_filter_reci_rank_constrain)/2, (l_filter_rank_constrain+r_filter_rank_constrain)/2, (l_filter_tot_constrain+r_filter_tot_constrain)/2, (l3_filter_tot_constrain+r3_filter_tot_constrain)/2, (l1_filter_tot_constrain+r1_filter_tot_constrain)/2);
-        printf("metric:\t\t\t MRR  \t hit@10 \t hit@3  \t hit@1 \n");
-        printf("l(raw):\t\t\t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
-        printf("r(raw):\t\t\t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
+        printf("metric:\t\t\t MRR  \t hit@10  \t hit@1 \n");
+        printf("l(raw):\t\t\t %f \t %f \t %f \n", l_reci_rank_constrain, l_tot_constrain, l1_tot_constrain);
+        printf("r(raw):\t\t\t %f \t %f \t %f \n", r_reci_rank_constrain, r_tot_constrain, r1_tot_constrain);
         printf("averaged(raw):\t\t %f \t %f \t %f \n",
-                (l_reci_rank+r_reci_rank)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
+                (l_reci_rank_constrain+r_reci_rank_constrain)/2, (l_tot_constrain+r_tot_constrain)/2, (l1_tot_constrain+r1_tot_constrain)/2);
         printf("\n");
         // printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank, l_filter_rank, l_filter_tot, l3_filter_tot, l1_filter_tot);
         // printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank, r_filter_rank, r_filter_tot, r3_filter_tot, r1_filter_tot);
@@ -355,18 +355,18 @@ void test_relation_prediction() {
 
     printf("no type constraint results:\n");
     
-    // printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
-    // printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",
-    //         rel_reci_rank, rel_rank, rel_tot, rel3_tot, rel1_tot);
-    // printf("\n");
-    // printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
-    //         rel_filter_reci_rank, rel_filter_rank, rel_filter_tot, rel3_filter_tot, rel1_filter_tot);
-    printf("metric:\t\t\t MRR  \t hit@10 \t hit@3  \t hit@1 \n");
-    printf("l(raw):\t\t\t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
-    printf("r(raw):\t\t\t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
-    printf("averaged(raw):\t\t %f \t %f \t %f \n",
-            (l_reci_rank+r_reci_rank)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
+    printf("metric:\t\t\t MRR \t\ hit@10   \t hit@1 \n");
+    printf("averaged(raw):\t\t %f  \t %f \t %f \n",
+            rel_reci_rank,  rel_tot,  rel1_tot);
     printf("\n");
+    printf("averaged(filter):\t %f  \t %f \t %f \n",
+            rel_filter_reci_rank, rel_filter_tot, rel1_filter_tot);
+    // printf("metric:\t\t\t MRR  \t hit@10  \t hit@1 \n");
+    // printf("l(raw):\t\t\t %f \t %f \t %f \n", rel_reci_rank, l_tot, l1_tot);
+    // printf("r(raw):\t\t\t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
+    // printf("averaged(raw):\t\t %f \t %f \t %f \n",
+    //         (l_reci_rank+r_reci_rank)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
+    // printf("\n");
     // printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank, l_filter_rank, l_filter_tot, l3_filter_tot, l1_filter_tot);
     // printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank, r_filter_rank, r_filter_tot, r3_filter_tot, r1_filter_tot);
     // printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
