@@ -6,7 +6,7 @@ from openke.module.model import ComplEx
 from openke.module.loss import SoftplusLoss
 from openke.module.strategy import NegativeSampling
 from openke.data import TrainDataLoader, TestDataLoader
-from torchmetrics import RetrievalMAP
+from torchmetrics.retrieval import RetrievalMAP
 
 
 # import os
@@ -65,7 +65,10 @@ print("Retrieval Map for FB15k237 ", retrieval_map)
 #         retrieval_map.update(scores, data)
 #         #print("Retrieval Map for WN18RR ",retrieval_map)
 #     map_value = retrieval_map.compute()
-tester_output = tester.run_link_prediction(type_constrain=False)
-retrieval_map.update(tester_output)
-map_score = retrieval_map.compute()
-print("Retrieval MAP Score:", map_score)
+
+# Retrieve the scores and true labels from tester
+scores, labels = tester.run_link_prediction(type_constrain=False)
+
+# Calculate Retrieval MAP
+map_score = retrieval_map(scores, labels)
+print("Retrieval MAP Score:", map_score.item())
