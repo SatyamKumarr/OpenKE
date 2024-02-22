@@ -52,7 +52,7 @@ tester.run_triple_classification(threshlod=0.5)
 
 # Add RetrievalMAP metric
 retrieval_map = RetrievalMAP()
-print("Retrieval Map for FB15k237 ", retrieval_map)
+print("Retrieval Map for WN18RR ", retrieval_map)
 # with torch.no_grad():
 #     complEx.eval()
 #     for data in test_dataloader:
@@ -62,10 +62,18 @@ print("Retrieval Map for FB15k237 ", retrieval_map)
 #         #print("Retrieval Map for WN18RR ",retrieval_map)
 #     map_value = retrieval_map.compute()
 
-# Retrieve the scores and true labels from tester
-scores, labels = tester.run_link_prediction(type_constrain=False)
+# Get predictions
+predictions = tester.run_link_prediction(type_constrain=False)
 
-# Calculate Retrieval MAP
-map_score = retrieval_map(scores, labels)
+# Process predictions and targets
+pred_scores = torch.cat(predictions, dim=0)
+true_labels = torch.zeros_like(pred_scores)
+
+# Calculate Retrieval.MAP
+retrieval_map(pred_scores, true_labels)
+
+# Get the metric value
+map_score = retrieval_map.compute()
+
 print("Retrieval MAP Score:", map_score.item())
 
