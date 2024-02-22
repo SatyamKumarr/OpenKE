@@ -9,9 +9,9 @@ from openke.data import TrainDataLoader, TestDataLoader
 from torchmetrics import RetrievalMAP
 
 
-import os
-os.makedirs('./checkpoint')
-# print(!pwd)
+# import os
+# os.makedirs('checkpoint')
+# # print(!pwd)
 
 # dataloader for training
 train_dataloader = TrainDataLoader(
