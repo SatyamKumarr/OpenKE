@@ -278,11 +278,11 @@ void test_link_prediction(bool type_constrain = false) {
 
     printf("no type constraint results:\n");
     
-    printf("metric:\t\t\t MRR \t MAP \t hit@10 \t hit@1 \n");
-    printf("Head:\t\t\t %f \t %f \t %f \t %f \n", l_reci_rank, l_tot, l1_tot);
-    printf("Tail:\t\t\t %f \t %f \t %f \t %f \n", r_reci_rank, r_tot, r1_tot);
-    printf("averaged:\t\t %f \t %f \t %f \t %f \n",
-            (l_reci_rank+r_reci_rank)/2, (l_map+r_map)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
+    printf("metric:\t\t\t MRR \t\t MAP \t\t hit@10 \t\t hit@1 \n");
+    printf("Head:\t\t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \n", l_reci_rank, l_map, l_tot, l1_tot);
+    printf("Tail:\t\t\t %.4f \t\t %.4f \t\t %.4f \t\t %.4f \n", r_reci_rank, rmap, r_tot, r1_tot);
+    // printf("averaged:\t\t %.4f \t %.4f \t %.4f \t %.4f \n",
+            // (l_reci_rank+r_reci_rank)/2, (l_map+r_map)/2, (l_tot+r_tot)/2, (l1_tot+r1_tot)/2);
     printf("\n");
     // printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank, l_filter_rank, l_filter_tot, l3_filter_tot, l1_filter_tot);
     // printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank, r_filter_rank, r_filter_tot, r3_filter_tot, r1_filter_tot);
